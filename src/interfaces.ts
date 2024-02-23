@@ -37,3 +37,20 @@ export interface CountryDetails extends Country {
     }
     borders: string[]
 }
+
+export interface CountryDetailsProps {
+    name: string,
+    nativeName: string,
+    population: number,
+    flag: {
+        svg: string,
+        alt: string,
+    }
+    region: string,
+    subRegion: string
+    capital: string,
+    domain: string[],
+    currencies: string[],
+    languages: string[],
+    borders: string[]
+}

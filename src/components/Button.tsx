@@ -2,13 +2,13 @@ import { ReactNode } from "react"
 import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
 
-interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant: 'default' | 'primary' | 'secondary'
     children: ReactNode
     link?: string
 }
 
-export const Button = ({ variant, link, children, className, ...props }: IButton) => {
+export const Button = ({ variant, link, children, className, ...props }: ButtonProps) => {
     return (
         <>
             {link ? (

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Country } from '../interfaces'
 
-interface Countries{
+interface CountriesProps{
     countries: Country[]
 }
 
-export const CountryList = ({ countries }: Countries) => {
+export const CountryList = ({ countries }: CountriesProps) => {
     return (
         <ul className='flex flex-wrap gap-16 max-w-screen-xl justify-center mx-4 my-7'>
             {countries && countries.map((country: Country, index) => {
