@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    :root {
+        --dark-mode-elements: 209deg, 23%, 22%;
+        --dark-mode-background: 207deg, 26%, 17%;
+        --light-mode-text: 200deg, 15%, 8%;
+        --light-mode-input: 0, 0%, 52%;
+        --light-mode-background: 0, 0%, 98%;
+        --dark-mode-text-n-light-mode-elements: 0, 0%, 100%;
+    }
+
+    html{
+        font-family: 'Nunito Sans', sans-serif;
+        background-color: hsl(var(--light-mode-background));
+    }
+
+    .primary{
+        padding: 0.3rem 1.5rem;
+        border-radius: 4px;
+        box-shadow: 0 0 15px 3px rgb(0 0 0 / 0.1), 0 0 6px 4px rgb(0 0 0 / 0.1);
+        margin-bottom: 2rem;
+        background-color: hsl(var(--dark-mode-text-n-light-mode-elements));
+    }
+
+    .default {
+        background-color: transparent;
+    }
+}
