@@ -1,12 +1,29 @@
 import { Header } from "../components/Header"
 import { CountryList } from "../components/CountryList"
 import axios, { AxiosResponse } from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Country } from '../interfaces'
+import { FilterSection } from "@/components/FilterSection"
+import { Search } from "@/components/Search"
+import { Select } from "@/components/Select"
+
+const regions = ['Africa', 'America', 'Asia', 'Europa', 'Oceania']
+
+const getFilteredCountires = (countries: Country[], search: string, region: string): Country[] => {
+    return countries.filter((country) =>
+        country.name.common.toLowerCase().includes(search.toLowerCase()))
+            .filter((country) => 
+                country.region.toLowerCase().includes(region.toLowerCase()))
+}
 
 export const Home = () => {
     const [countries, setCountries] = useState<Country[]>([])
     const [loading, setLoading] = useState(true)
+
+    const [search, setSearch] = useState('')
+    const [region, setRegion] = useState('')
+
+    const filteredCountries = useMemo(() => getFilteredCountires(countries, search, region), [countries, search, region])
 
     useEffect(() => {
         getAllCountries()
@@ -22,18 +39,20 @@ export const Home = () => {
         }
     }
 
-    console.log(countries)
-
     return (
         <>
             <Header />
-            <main className="flex justify-center">
-            {loading 
-            ? 
-                <p>"Loading..."</p>
-            : 
-                <CountryList countries={countries}/>
-            }
+            <main className="">
+                <FilterSection >
+                    <Search search={search} setSearch={setSearch} placeholder="Search for country..." />
+                    <Select options={regions} placeholder='Filter by Region' region={region} setRegion={setRegion} />
+                </FilterSection>
+                {loading
+                    ?
+                    <p>"Loading..."</p>
+                    :
+                    <CountryList countries={filteredCountries} />
+                }
             </main>
         </>
     )
