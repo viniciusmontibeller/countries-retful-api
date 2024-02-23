@@ -35,4 +35,5 @@ export interface CountryDetails extends Country {
     languages: {
         [key:string]: string
     }
+    borders: string[]
 }
