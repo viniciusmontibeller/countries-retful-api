@@ -1,12 +1,14 @@
-// import { Header } from "./components/Header"
-import { Router } from "./router"
+import { RouterProvider } from "react-router-dom"
+import { router } from '@/router/router'
+
+import { ThemeProvider } from "./context/themeContext"
 
 function App() {
 
   return (
-    <>
-      <Router />
-    </>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   )
 }
 

@@ -1,4 +1,3 @@
-import { Header } from "../components/Header"
 import { CountryList } from "../components/CountryList"
 import { countriesApi } from '../services/countriesApi'
 import { getFilteredCountires } from '../utils/getFilteredCountries'
@@ -33,19 +32,16 @@ export const Home = () => {
 
     return (
         <>
-            <Header />
-            <main className="">
-                <FilterSection >
-                    <Search search={search} setSearch={setSearch} placeholder="Search for country..." />
-                    <Select options={regions} placeholder='Filter by Region' region={region} setRegion={setRegion} />
-                </FilterSection>
-                {loading
-                    ?
-                    <p>"Loading..."</p>
-                    :
-                    <CountryList countries={filteredCountries} />
-                }
-            </main>
+            <FilterSection >
+                <Search search={search} setSearch={setSearch} placeholder="Search for country..." />
+                <Select options={regions} placeholder='Filter by Region' region={region} setRegion={setRegion} />
+            </FilterSection>
+            {loading
+                ?
+                <p>"Loading..."</p>
+                :
+                <CountryList countries={filteredCountries} />
+            }
         </>
     )
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { Header } from "@/components/Header"
 import { CountryDetails } from '../interfaces'
 import { countriesApi } from "@/services/countriesApi"
 import { CountryInfo } from "@/components/CountryInfo"
@@ -42,13 +41,10 @@ export const Details = () => {
 
     return (
         <>
-            <Header />
-            <main className="flex justify-center">
-                {loading ? (<p>Loading...</p>
-                ) : (
-                  country && <CountryInfo country={dataHandler(country)} neighbours={neighbours} />
-                )}
-            </main>
+            {loading ? (<p>Loading...</p>
+            ) : (
+                country && <CountryInfo country={dataHandler(country)} neighbours={neighbours} />
+            )}
         </>
     )
 }
