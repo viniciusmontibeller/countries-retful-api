@@ -4,26 +4,47 @@
 
 
 @layer base {
-    :root {
-        --dark-mode-elements: 209deg, 23%, 22%;
-        --dark-mode-background: 207deg, 26%, 17%;
-        --light-mode-text: 200deg, 15%, 8%;
-        --light-mode-input: 0, 0%, 52%;
-        --light-mode-background: 0, 0%, 98%;
-        --dark-mode-text-n-light-mode-elements: 0, 0%, 100%;
+    /* :root {
+        --text-color: 200deg, 15%, 8%;;
+        --input-color: 0, 0%, 52%;
+        --element-color: 0, 0%, 100%;
+        --background-color: 0, 0%, 98%;
+    } */
+
+    body[data-theme='light'] {
+        --text-color: 200deg, 15%, 8%;;
+        --input-color: 0, 0%, 52%;
+        --element-color: 0, 0%, 100%;
+        --background-color: 0, 0%, 98%;
     }
 
-    html{
+    body[data-theme='dark'] {
+        --text-color: 0, 0%, 100%;;
+        --input-color: 0, 0%, 100%;
+        --element-color: 209deg, 23%, 22%;
+        --background-color: 207deg, 26%, 17%;
+    }
+
+
+    body{
         font-family: 'Nunito Sans', sans-serif;
-        background-color: hsl(var(--light-mode-background));
+        background-color: hsl(var(--background-color));
+        color: hsl(var(--text-color));
     }
 
-    .primary{
-        padding: 0.3rem 1.5rem;
+    .primary {
+        padding: 0.4rem 2rem;
         border-radius: 4px;
         box-shadow: 0 0 15px 3px rgb(0 0 0 / 0.1), 0 0 6px 4px rgb(0 0 0 / 0.1);
         margin-bottom: 2rem;
-        background-color: hsl(var(--dark-mode-text-n-light-mode-elements));
+        background-color: hsl(var(--element-color));
+    }
+
+    .secondary {
+        padding: 0.3rem 0.5rem;
+        border-radius: 4px;
+        box-shadow: 0 0 15px 3px rgb(0 0 0 / 0.1), 0 0 6px 4px rgb(0 0 0 / 0.1);
+        background-color: hsl(var(--element-color));
     }
 
     .default {
