@@ -41,7 +41,7 @@ export interface CountryDetails extends Country {
 export interface CountryDetailsProps {
     name: string,
     nativeName: string,
-    population: number,
+    population: string,
     flag: {
         svg: string,
         alt: string,

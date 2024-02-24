@@ -6,7 +6,7 @@ export const dataHandler = (country: CountryDetails): CountryDetailsProps => {
     return {
         name: country.name.common,
         nativeName: getFirst(country.name.nativeName) || 'none',
-        population: country.population,
+        population: country.population.toLocaleString('pt-br'),
         flag: {
             svg: country.flags.svg,
             alt: country.flags.alt
