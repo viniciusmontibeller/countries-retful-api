@@ -8,12 +8,12 @@ interface SearchProps {
 
 export const Search = ({search, setSearch, placeholder}: SearchProps) => {
     return(
-        <div className='flex gap-5 items-center text-light-inputs bg-dark-text-n-light-elements px-7 py-4 shadow-2xl rounded-lg'>
+        <div className='flex gap-5 items-center text-input bg-element px-7 py-4 shadow-2xl rounded-lg grow max-w-md'>
             <MagGlass className='h-5'/>
             <input 
                 type='search' 
                 placeholder={placeholder}
-                className='bg-transparent w-full h-full'
+                className='bg-transparent w-full h-full outline-none'
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />

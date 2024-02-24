@@ -6,7 +6,7 @@ interface FilterSectionProps {
 
 export const FilterSection = ({children}: FilterSectionProps) => {
     return (
-        <section className="flex flex-wrap gap-16 max-w-screen-xl justify-between mx-4 my-7">
+        <section className="flex flex-col gap-12 my-7 sm:flex-row sm:max-w-screen-xl w-full justify-between">
             {children}
         </section>
     )

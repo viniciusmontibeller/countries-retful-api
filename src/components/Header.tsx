@@ -3,8 +3,8 @@ import { ToggleTheme } from "./ToggleTheme"
 
 export const Header = () => {
     return (
-        <header className="flex shadow-lg justify-center bg-dark-text-n-light-elements">
-            <div className="flex justify-between items-center max-w-screen-xl w-full mx-4 my-7">
+        <header className="flex justify-center shadow-lg bg-element">
+            <div className="flex justify-between items-center max-w-screen-xl w-full my-7 mx-4">
                 <Link to='/'>
                     <h1 className="font-extrabold sm:text-xl">
                         Where in the world?
