@@ -1,24 +1,23 @@
 import { Button } from "./Button"
-import { useContext, useEffect } from "react"
-import { ThemeContext } from "@/context/themeContext"
-import LightMoon from '../assets/moon-outline.svg?react'
-import DarkMoon from '../assets/moon.svg?react'
+import { useContext } from "react"
+import { Theme, ThemeContext } from "@/context/themeContext"
 
-export const ToggleTheme = () => {
+interface ToggleThemeProps {
+    lightIcon: React.ReactNode
+    darkIcon: React.ReactNode
+}
+
+export const ToggleTheme = ({ lightIcon, darkIcon }: ToggleThemeProps) => {
     const { theme, setTheme } = useContext(ThemeContext)
 
     function switchTheme() {
-        setTheme(theme === 'light' ? 'dark' : 'light')
+        const nexTheme: Theme = theme === 'light' ? 'dark' : 'light'
+        setTheme(nexTheme)
     }
-
-    useEffect(() => {
-        document.body.setAttribute('data-theme', theme)
-    }, [theme])
 
     return (
         <Button variant='default' className="font-semibold text-sm capitalize" onClick={switchTheme}>
-            {theme === 'light' ? <LightMoon className="h-4 fill-text"/> : <DarkMoon className="h-4 fill-text"/>}
-            {theme === 'light' ? 'dark' : 'light'} Mode
+            {theme === 'light' ? lightIcon : darkIcon} {theme === 'light' ? 'dark' : 'light'} Mode
         </Button>
     )
 }

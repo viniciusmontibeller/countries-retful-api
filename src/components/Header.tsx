@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ToggleTheme } from "./ToggleTheme"
+import { ThemeSwitcher } from "./ThemeSwitcher"
 
 export const Header = () => {
     return (
@@ -10,7 +10,7 @@ export const Header = () => {
                         Where in the world?
                     </h1>
                 </Link>
-                <ToggleTheme />
+                <ThemeSwitcher />
             </div>
         </header>
     )
