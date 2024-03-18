@@ -6,12 +6,15 @@ import { Country } from '../interfaces'
 import { FilterSection } from "@/components/FilterSection"
 import { Search } from "@/components/Search"
 import { Select } from "@/components/Select"
+import { errorHandler } from "@/utils/errorHandler"
+import { ErrorComponent } from "@/components/ErrorComponent"
 
 const regions = ['Africa', 'America', 'Asia', 'Europa', 'Oceania']
 
 export const Home = () => {
     const [countries, setCountries] = useState<Country[]>([])
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     const [search, setSearch] = useState('')
     const [region, setRegion] = useState('')
@@ -21,14 +24,21 @@ export const Home = () => {
     useEffect(() => {
         (async () => {
             try {
-                const data = await countriesApi.getAll() 
+                const data = await countriesApi.getAll()
                 setCountries(data)
                 setLoading(false)
-             } catch (error) {
-                console.log(`${error}`)
+                setError(null)
+            } catch (error) {
+                const errorInfo = errorHandler(error)
+                setError(errorInfo)
+                setLoading(false)
              }
         })();
     }, [])
+
+    if (error) {
+        return <ErrorComponent error={error} />
+    }
 
     return (
         <>
