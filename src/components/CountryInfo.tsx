@@ -12,16 +12,18 @@ export const CountryInfo = ({ country, neighbours }: CountryInfoProps) => {
     const navigate = useNavigate()
 
     return (
-        <div className="max-w-screen-xl m-5 w-full">
-            <Button variant="primary" onClick={() => navigate(-1)}>
-                <Arrow className="h-4"/>
+        <div className="max-w-screen-xl w-full space-y-14">
+            <Button variant="primary" className="mt-4" onClick={() => navigate(-1)}>
+                <Arrow className="h-4" />
                 Back
             </Button>
-            <div className="flex flex-col gap-16 flex-wrap sm:flex-row sm:gap-28">
-                <img src={country.flag.svg} alt={country.flag.alt} className="max-h-80 h-full"/>
-                <div className="grow">
-                    <h2 className="font-extrabold text-3xl mb-8">{country.name}</h2>
-                    <div className="flex flex-col gap-10 justify-between mb-10 sm:flex-row">
+            <section className="flex flex-col gap-16 sm:flex-row sm:gap-28 items-center">
+                <div className="basis-1/2 ">
+                    <img src={country.flag.svg} alt={country.flag.alt} className="" />
+                </div>
+                <div className="basis-1/2">
+                    <h2 className="font-extrabold text-2xl mb-8">{country.name}</h2>
+                    <div className="flex flex-col gap-10 justify-between mb-14 sm:flex-row">
                         <div className="flex flex-col gap-2">
                             <p><strong>Native Name:</strong> {country.nativeName}</p>
                             <p><strong>Population:</strong> {country.population}</p>
@@ -36,20 +38,20 @@ export const CountryInfo = ({ country, neighbours }: CountryInfoProps) => {
                         </div>
                     </div>
 
-                    <div className="space-y-3">
-                        <span>Border Countries:</span>
-                        <ul className="flex gap-6 justify-center">
-                        {neighbours?.map((neighbour) => {
-                            return (
-                                <li key={neighbour.name.common}>
-                                    <Button variant="secondary" link={`/details/${neighbour.name.common}`}>{neighbour.name.common}</Button>
-                                </li>
-                            )
-                        })}
+                    <div className="flex items-center gap-4 flex-wrap">
+                        <strong>Border Countries:</strong>
+                        <ul className="flex gap-3 justify-center flex-wrap">
+                            {neighbours.length ? (neighbours?.map((neighbour) => {
+                                return (
+                                    <li key={neighbour.name.common}>
+                                        <Button variant="secondary" className="text-sm" link={`/details/${neighbour.name.common}`}>{neighbour.name.common}</Button>
+                                    </li>
+                                )
+                            })) : <p>No borders found</p>}
                         </ul>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     )
 }

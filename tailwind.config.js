@@ -12,6 +12,7 @@ export default {
         text: 'hsl(var(--text-color), 1)',
         element: 'hsl(var(--element-color), 1)',
         input: 'hsl(var(--input-color), 1)',
+        faded: 'hsl(var(--faded-text), 1)',
       },
       fontFamily: {
         nunito: ['Nunito-Sans', 'sans-serif']

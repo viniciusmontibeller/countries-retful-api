@@ -14,7 +14,7 @@ export const Select = ({region, setRegion, options, placeholder}: SelectProps) =
     return (
         <div className='w-56 relative'>
             <button 
-                className='flex w-full py-4 px-6 justify-between items-center bg-element rounded-lg shadow-xl'
+                className='flex w-full py-4 px-6 justify-between text-sm items-center bg-element rounded-lg shadow-xl'
                 onClick={() => setOpen(!open)}
             >
                 {region ? region : placeholder}
@@ -27,7 +27,7 @@ export const Select = ({region, setRegion, options, placeholder}: SelectProps) =
                     return (
                         <li 
                             key={region}
-                            className='py-2 px-6 cursor-pointer hover:bg-emerald-500'
+                            className='py-2 px-6 cursor-pointer text-sm hover:bg-emerald-500'
                             onClick={() => {
                                 setRegion(region)
                                 setOpen(false)

@@ -6,7 +6,7 @@ export const RootLayout = () => {
         <>
             <Header />
 
-            <main className="flex flex-col items-center mx-4">
+            <main className="flex flex-col items-center mx-4 my-7 sm:my-10">
                 <Outlet />
             </main>
         </>
