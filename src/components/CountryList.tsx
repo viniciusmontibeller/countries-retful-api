@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Country } from '../interfaces'
 
 interface CountriesProps{
-    countries: Country[]
+    countries: Country[] | undefined
 }
 
 export const CountryList = ({ countries }: CountriesProps) => {

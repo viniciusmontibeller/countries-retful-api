@@ -2,21 +2,33 @@ import { getFirst } from "@/utils/getFirst"
 import { getCurrencies } from "@/utils/getCurrencies"
 import { CountryDetails, CountryDetailsProps } from '@/interfaces'
 
-export const dataHandler = (country: CountryDetails): CountryDetailsProps => {
+export const dataHandler = (country: CountryDetails | null): CountryDetailsProps => {
+    const { 
+        name,
+        population,
+        flags,
+        region,
+        subregion,
+        capital,
+        tld,
+        currencies,
+        languages,
+        borders,
+    } = country || {}
     return {
-        name: country.name.common,
-        nativeName: getFirst(country.name.nativeName) || 'none',
-        population: country.population.toLocaleString('pt-br'),
+        name: name?.common || 'Unknown',
+        nativeName: getFirst(name?.nativeName) || 'Unknown',
+        population: population?.toLocaleString('pt-br') || 'Unknown',
         flag: {
-            svg: country.flags.svg,
-            alt: country.flags.alt
+            svg: flags?.svg || 'Unknown',
+            alt: flags?.alt || 'Unknown'
         },
-        region: country.region,
-        subRegion: country.subregion || 'none',
-        capital: country.capital?.[0] || 'none',
-        domain: country.tld,
-        currencies: getCurrencies(country.currencies) || ['none'],
-        languages: Object.values(country.languages || { lang: 'none'}),
-        borders: country.borders || []
+        region: region || 'Unknown',
+        subRegion: subregion || 'Unknown',
+        capital: capital?.[0] || 'Unknown',
+        domain: tld || [],
+        currencies: getCurrencies(currencies) || ['Unknown'],
+        languages: Object.values(languages || { lang: 'Unknown'}),
+        borders: borders || []
     }
 }
