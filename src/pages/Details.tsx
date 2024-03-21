@@ -1,49 +1,27 @@
-import { useState, useEffect } from "react"
+// import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { CountryDetails } from '../interfaces'
-import { countriesApi } from "@/services/countriesApi"
+// import { countriesApi } from "@/services/countriesApi"
 import { CountryInfo } from "@/components/CountryInfo"
 import { dataHandler } from "@/utils/dataHandler"
+import { useFetch } from "@/hooks/useFetch"
+import { ErrorComponent } from "@/components/ErrorComponent"
 
 export const Details = () => {
-    const [country, setCountry] = useState<CountryDetails | null>(null)
-    const [loading, setLoading] = useState(true)
-    const [neighbours, setNeighbours] = useState<CountryDetails[]>([])
-
     const { name } = useParams()
 
-    useEffect(() => {
-        (async () => {
-            if (name){
-                try {
-                    const data = await countriesApi.getCountryDetails(name)
-                    setCountry(data[0])
-                    setLoading(false)
-                } catch (error) {
-                    console.log(`${error}`)
-                }
-            }
-        })();
-    }, [name])
+    const { data, loading, error } = useFetch<CountryDetails[]>(`name/${name?.toLowerCase()}`)
+    const [country] = data ?? []
 
-    useEffect(() => {
-        (async () => {
-            if (country?.borders.length) {
-                try{
-                    const data = await countriesApi.getCountryNeighbours(country?.borders)
-                    setNeighbours(data)
-                } catch (error) {
-                    console.log(`${error}`)
-                }
-            }
-        })()
-    }, [country?.borders])
+    if (error) {
+        return <ErrorComponent error={error} />
+    }
 
     return (
         <>
-            {loading ? (<p>Loading...</p>
+            { loading ? ( <p>Loading...</p>
             ) : (
-                country && <CountryInfo country={dataHandler(country)} neighbours={neighbours} />
+               <CountryInfo country={dataHandler(country)} />
             )}
         </>
     )
