@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import ChevronDown from '../assets/chevron-down-outline.svg?react'
+import ChevronDown from '@/assets/chevron-down-outline.svg?react'
 
 interface SelectProps {
-    region: string
-    setRegion: (option: string) => void
+    option: string
+    setOption: (option: string) => void
     options: string[]
     placeholder: string
 }
 
-export const Select = ({region, setRegion, options, placeholder}: SelectProps) => {
+export const Select = ( {option, setOption, options, placeholder}: SelectProps) => {
     const [ open, setOpen ] = useState(false)
 
     return (
@@ -17,23 +17,23 @@ export const Select = ({region, setRegion, options, placeholder}: SelectProps) =
                 className='flex w-full py-4 px-6 justify-between text-sm items-center bg-element rounded-lg shadow-xl'
                 onClick={() => setOpen(!open)}
             >
-                {region ? region : placeholder}
+                {option ? option : placeholder}
                 <ChevronDown className={`h-4 ${open && 'rotate-180'}`} />
             </button>
             <ul 
                 className={`bg-element rounded-lg shadow-xl overflow-hidden absolute w-full mt-1 ${ open ? 'block' : 'hidden' }`}
             >
-                {options.map((region) => {
+                {options.map((option) => {
                     return (
                         <li 
-                            key={region}
+                            key={option}
                             className='py-2 px-6 cursor-pointer text-sm hover:bg-emerald-500'
                             onClick={() => {
-                                setRegion(region)
+                                setOption(option)
                                 setOpen(false)
                             }}
                         >
-                            {region}
+                            {option}
                         </li>
                     )
                 })}

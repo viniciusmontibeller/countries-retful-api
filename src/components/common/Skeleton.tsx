@@ -11,7 +11,7 @@ export const Skeleton = ({ count, className, ...props }: SkeletonProps) => {
             [...Array(count)].map((_, index) => (
                 <div
                 key={index}
-                className={cn('motion-safe:animate-pulse bg-slate-600 rounded-lg', className)}
+                className={cn('motion-safe:animate-pulse bg-slate-600 rounded-lg w-full', className)}
                 {...props}
             />
             ))}

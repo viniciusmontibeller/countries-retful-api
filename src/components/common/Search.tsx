@@ -1,4 +1,4 @@
-import MagGlass from '../assets/search-outline.svg?react'
+import MagGlass from '@/assets/search-outline.svg?react'
 
 interface SearchProps {
     search: string
