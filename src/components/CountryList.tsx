@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Country } from '../interfaces'
+import { Country } from '@/interfaces'
 
 interface CountriesProps{
     countries: Country[] | undefined

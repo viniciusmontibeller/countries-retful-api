@@ -22,7 +22,7 @@ const handleAxiosError = (error: AxiosError): string => {
 
 export const errorHandler = (error: unknown) => {
     if (axios.isAxiosError(error)) {
-        return handleAxiosError(error as AxiosError)
+        return handleAxiosError(error)
     } else {
         return `Error: ${getErrorMessage(error)}`
     }

@@ -3,11 +3,11 @@ import { getFilteredCountires } from '../utils/getFilteredCountries'
 import { useMemo, useState } from "react"
 import { Country } from '../interfaces'
 import { FilterSection } from "@/components/FilterSection"
-import { Search } from "@/components/Search"
-import { Select } from "@/components/Select"
-import { ErrorComponent } from "@/components/ErrorComponent"
+import { Search } from "@/components/common/Search"
+import { Select } from "@/components/common/Select"
+import { ErrorComponent } from "@/components/common/ErrorComponent"
 import { useFetch } from "@/hooks/useFetch"
-import { HomeSkeleton } from "@/components/HomeSkeleton"
+import { HomeSkeleton } from "@/components/loaders/HomeSkeleton"
 
 const regions = ['Africa', 'America', 'Asia', 'Europa', 'Oceania']
 
@@ -27,9 +27,9 @@ export const Home = () => {
         <>
             <FilterSection >
                 <Search search={search} setSearch={setSearch} placeholder="Search for country..." />
-                <Select options={regions} placeholder='Filter by Region' region={region} setRegion={setRegion} />
+                <Select options={regions} placeholder='Filter by Region' option={region} setOption={setRegion} />
             </FilterSection>
-            { loading
+            {loading
                 ?
                 <HomeSkeleton />
                 :

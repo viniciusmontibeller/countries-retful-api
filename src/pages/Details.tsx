@@ -1,14 +1,16 @@
-// import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { CountryDetails } from '../interfaces'
-// import { countriesApi } from "@/services/countriesApi"
 import { CountryInfo } from "@/components/CountryInfo"
-import { dataHandler } from "@/utils/dataHandler"
 import { useFetch } from "@/hooks/useFetch"
-import { ErrorComponent } from "@/components/ErrorComponent"
+import { ErrorComponent } from "@/components/common/ErrorComponent"
+import { Button } from "@/components/common/Button"
+import Arrow from '@/assets/arrow-back.svg?react'
+import { DetailsSkeleton } from "@/components/loaders/DetailsSkeleton"
 
 export const Details = () => {
     const { name } = useParams()
+
+    const navigate = useNavigate()
 
     const { data, loading, error } = useFetch<CountryDetails[]>(`name/${name?.toLowerCase()}`)
     const [country] = data ?? []
@@ -18,11 +20,15 @@ export const Details = () => {
     }
 
     return (
-        <>
-            { loading ? ( <p>Loading...</p>
-            ) : (
-               <CountryInfo country={dataHandler(country)} />
-            )}
-        </>
+        <div className="max-w-screen-xl w-full space-y-14">
+            <Button variant="primary" className="mt-4" onClick={() => navigate(-1)}>
+                <Arrow className="h-4" />
+                Back
+            </Button>
+            {loading && <DetailsSkeleton />}
+            {!loading && <CountryInfo country={country} />}
+        </div>
     )
 }
+
+Details.whyDidYouRender = true
