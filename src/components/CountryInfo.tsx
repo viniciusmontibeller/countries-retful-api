@@ -1,7 +1,8 @@
-import { useFetch } from "@/hooks/useFetch"
+import { useMemo } from "react"
+
 import { Button } from "./common/Button"
 import { CountryDetails } from "@/interfaces"
-import { useMemo } from "react"
+import { useFetch } from "@/hooks/useFetch"
 import { dataHandler } from "@/utils/dataHandler"
 
 interface CountryInfoProps {
@@ -11,13 +12,14 @@ interface CountryInfoProps {
 export const CountryInfo = ({ country }: CountryInfoProps) => {
     const hasBorders = Boolean(country.borders && country.borders.length > 0)
 
+    // const {data: borders, loading} = useFetch<CountryDetails[]>(`alpha?codes=${country?.borders?.join(',')}`)
     const { data: borders, loading } = useFetch<CountryDetails[]>('alpha', {
         params: {
             codes: country.borders?.join(',')
         }
     }, hasBorders)
 
-    const countryData = useMemo (() => dataHandler(country, borders ?? []), [country, borders])
+    const countryData = useMemo(() => dataHandler(country, borders), [country, borders])
     
     return (
         <section className="flex flex-col gap-16 sm:flex-row sm:gap-28 items-center">
