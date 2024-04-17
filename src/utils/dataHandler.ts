@@ -2,7 +2,7 @@ import { getFirst } from "@/utils/getFirst"
 import { getCurrencies } from "@/utils/getCurrencies"
 import { CountryDetails, CountryDetailsProps } from '@/interfaces'
 
-export const dataHandler = (country: CountryDetails, neighbours: CountryDetails[]): CountryDetailsProps => {
+export const dataHandler = (country: CountryDetails, neighbours: CountryDetails[] | null): CountryDetailsProps => {
 
     return {
         name: country?.name.common || 'Unknown',
@@ -18,6 +18,6 @@ export const dataHandler = (country: CountryDetails, neighbours: CountryDetails[
         domain: country?.tld,
         currencies: getCurrencies(country?.currencies) || ['Unknown'],
         languages: Object.values(country?.languages || { lang: 'Unknown' }),
-        borders: neighbours.map((neighbour) => neighbour.name.common)
+        borders: neighbours! && neighbours.map((neighbour) => neighbour.name.common)
     }
 }

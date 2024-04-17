@@ -30,5 +30,3 @@ export const Details = () => {
         </div>
     )
 }
-
-Details.whyDidYouRender = true
